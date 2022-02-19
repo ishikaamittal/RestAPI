@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Records import views
+from Records.views import RecordView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.records, name='records'),
+    # path('', views.recordsView, name='records'),
+    # path('add/', views.addRecord, name='AddRecords'),
+    path('add', RecordView.as_view(), name='file-upload'),
 
-]
+    ]
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
