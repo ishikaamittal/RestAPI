@@ -23,9 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', views.recordsView, name='records'),
-    # path('add/', views.addRecord, name='AddRecords'),
-    path('add', RecordView.as_view(), name='file-upload'),
+    path('', RecordView.as_view(), name='file-upload'),
 
     ]
 if settings.DEBUG:

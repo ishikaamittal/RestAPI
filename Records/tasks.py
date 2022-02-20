@@ -6,7 +6,7 @@ import os
 from django.conf import settings
 
 @shared_task
-def crop_job():
+def resizing():
     uncropped_records = Records.objects.filter(is_cropped=False)
     for record in uncropped_records:
         img = Image.open(record.file.path)  
@@ -15,4 +15,6 @@ def crop_job():
         img.save(record.file.path)
         record.is_cropped = True
         record.save()
+        print(record.is_cropped)
         return img
+
