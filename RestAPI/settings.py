@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,11 +126,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media', 'profile_pic')
 MEDIA_URL = '/media/'
+IMAGES_DIR = Path.joinpath(MEDIA_ROOT, 'images')
 
+if not Path.exists(MEDIA_ROOT) or not Path.exists(IMAGES_DIR):
+    os.makedirs(IMAGES_DIR)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

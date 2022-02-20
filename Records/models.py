@@ -8,16 +8,17 @@ class Records(models.Model):
     weight = models.DecimalField(max_digits=30, decimal_places=1)
     height = models.DecimalField(max_digits=20, decimal_places=1)
     file = models.FileField(blank=False, null=False)
+    is_cropped = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
 
-    def save_file(self,*args, **kwargs):
-        super().save_file(*args, **kwargs)
+    # def save_file(self,*args, **kwargs):
+    #     super().save_file(*args, **kwargs)
 
-        img = Image.open(self.file.path)
+    #     img = Image.open(self.file.path)
 
-        if img.height > 300 or img.width > 300:
-            output_size = (140, 140)
-            img.thumbnail(output_size)
-            img.save_file(self.file.path)
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (140, 140)
+    #         img.thumbnail(output_size)
+    #         img.save_file(self.file.path)
