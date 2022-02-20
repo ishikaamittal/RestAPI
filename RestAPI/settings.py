@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
 ]
+
+CELERY_RESULT_BACKEND = 'django-db'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:8000:6379'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 
 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media', 'profile_pic')

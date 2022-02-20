@@ -1,5 +1,6 @@
 from distutils.command.upload import upload
 from django.db import models
+from PIL import Image
 
 class Records(models.Model):
     name = models.CharField(max_length=50)
@@ -10,3 +11,13 @@ class Records(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
+
+    def save_file(self,*args, **kwargs):
+        super().save_file(*args, **kwargs)
+
+        img = Image.open(self.file.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (140, 140)
+            img.thumbnail(output_size)
+            img.save_file(self.file.path)
