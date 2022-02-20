@@ -20,7 +20,7 @@ class RecordView(APIView):
 
     def get(self, request):
         if(request.method == 'GET'):
-            r = Records.objects.all().values()
+            r = Records.objects.all().values().order_by('-timestamp')
             rlist = list(r)
             return HttpResponse(rlist)
         else:

@@ -121,6 +121,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+CELERY_BROKER_URL = 'redis://127.0.0.1:8000:6379'
+
+
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media', 'profile_pic')
 MEDIA_URL = '/media/'
 
@@ -129,6 +132,7 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
