@@ -22,6 +22,6 @@ class RecordView(APIView):
         if(request.method == 'GET'):
             r = Records.objects.all().values().order_by('-timestamp')
             rlist = list(r)
-            return HttpResponse(rlist)
+            return Response(rlist)
         else:
-            return HttpResponse('Invalid Request Method : Valid Option is GET')
+            return Response(status=status.HTTP_404_NOT_FOUND)

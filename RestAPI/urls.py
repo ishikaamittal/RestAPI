@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RecordView.as_view(), name='file-upload'),
+    path('', RecordView.as_view(), name='get_post_records'),
 
     ]
 if settings.DEBUG:
