@@ -82,8 +82,8 @@ To trigger the background jobs :
 ```python
 celery -A Records worker --loglevel=info
 In shell:
-from .celery import debug_task
-debug_task.delay()
+from Records.celery import resizing
+resizing()
 
 ```
 
